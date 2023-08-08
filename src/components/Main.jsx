@@ -8,13 +8,14 @@ export default function Main() {
 
     const webSocket = new WebSocket(URL);
 
-    webSocket.onopen = (event) =>{console.log("Websocket iniciado")}
-
-    webSocket.onmessage = (event) => {console.log(event.data); setText(event.data)}
-
     const [text, setText] = useState("Esperando al socket")
 
+    webSocket.onopen = (event) =>{console.log("Websocket iniciado")}
 
+    webSocket.onmessage = (event) => {
+        console.log(event.data);
+        setText(event.data)
+    }
 
     return(
         <>
