@@ -46,7 +46,9 @@ export default function Main() {
             },
             //body: JSON.stringify(data) 
           }).then(response => response.json().then((r) => {
-            setText(r.image)
+            console.log(r)
+            setText(r.base_64)
+            setImage(r.base_64)
             console.log("Exito!")
           }))
     }

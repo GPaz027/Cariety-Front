@@ -1,6 +1,7 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import cors from "cors";
+//import bodyParser from "bodyParser"
 
 
 /* ------------------------------- DEFINICION DE VARIABLES -------------------------------*/
@@ -19,6 +20,7 @@ wss.on('connection', function connection(ws) {
 
     ws.send("Hola desde el MicroBackend")
   
+    //No sirve
     ws.on('message', function message(data) {
         console.log('Me active');
         ws.send("Imagen Lista")
@@ -28,8 +30,18 @@ wss.on('connection', function connection(ws) {
 /* ------------------------------- ENDPOINTS DE EXPRESS -------------------------------*/
 
 app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(express.json())
 
 app.listen(expressPort, ()=>{console.log("Port is working")})
+
+app.post('/image', (req, res) => {
+    let request = req.body
+    image = request.base_64
+
+    wss.clients.forEach((client)=>{ client.send("Imagen Disponible")})
+    res.send('Active la Disponibilidad de la Imagen')
+})
+
 
 
 app.get('/image', (req, res) => {
@@ -43,6 +55,7 @@ app.get('/', (req, res) => {
 })
 
 app.get("/predict", (req, res)=>{
-    res.send({"image": image})
+    console.log(image)
+    res.json({"base_64": image})
 
 })
