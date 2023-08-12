@@ -1,8 +1,6 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import cors from "cors";
-//import bodyParser from "bodyParser"
-
 
 /* ------------------------------- DEFINICION DE VARIABLES -------------------------------*/
 const app = express()
@@ -19,12 +17,6 @@ wss.on('connection', function connection(ws) {
     console.log("Websocket del microbackend encendido")
 
     ws.send("Hola desde el MicroBackend")
-  
-    //No sirve
-    ws.on('message', function message(data) {
-        console.log('Me active');
-        ws.send("Imagen Lista")
-    });
 });
 
 /* ------------------------------- ENDPOINTS DE EXPRESS -------------------------------*/
@@ -32,7 +24,7 @@ wss.on('connection', function connection(ws) {
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json())
 
-app.listen(expressPort, ()=>{console.log("Port is working")})
+app.listen(expressPort, ()=>{console.log("El puerto esta Funcionando")})
 
 app.post('/image', (req, res) => {
     let request = req.body
@@ -42,8 +34,12 @@ app.post('/image', (req, res) => {
     res.send('Active la Disponibilidad de la Imagen')
 })
 
+app.get("/predict", (req, res)=>{
+    console.log(image)
+    res.json({"base_64": image})
+})
 
-
+/* ------------------------------- ENDPOINTS DE PRUEBA -------------------------------*/
 app.get('/image', (req, res) => {
     wss.clients.forEach((client)=>{ client.send("Imagen Disponible")})
     image = image + " I "
@@ -52,10 +48,4 @@ app.get('/image', (req, res) => {
 
 app.get('/', (req, res) => {
     res.send('Imagen a Procesar')
-})
-
-app.get("/predict", (req, res)=>{
-    console.log(image)
-    res.json({"base_64": image})
-
 })
