@@ -11,6 +11,7 @@ export default function PredictionPage() {
     const webSocket = new WebSocket(URL_WEBSOCKET);
 
     const [text, setText] = useState("Esperando al socket")
+    const [prob, setProb] = useState(0.5)
     const [image, setImage] = useState("https://es.vitejs.dev/logo.svg")
 
     useEffect(()=>{
@@ -32,8 +33,9 @@ export default function PredictionPage() {
             response => response.json()
             .then((r) => { 
                 console.log(r)
-                setText(r.prediction)
+                setText(r.label)
                 setImage(r.base_64)
+                setProb(r.prob)
                 console.log("Exito!")
             })
         )
@@ -42,7 +44,11 @@ export default function PredictionPage() {
         <div className="container">
             <div className="text-container">
                 {"Prediccion: "}
-                <span className="prediction">{text}</span>
+                <span className="prediction">{(text != 'good' && text != 'bad') ? text : (text == 'good' ? "Buena": "Mala")} </span>
+                
+                {}
+                <div className="prob">{"Probabilidad: " + (prob*100).toFixed(0) + "%"}</div>
+
             </div>
             <div className="image-container">
                 <img className="image" src={image}></img>
