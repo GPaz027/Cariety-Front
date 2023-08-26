@@ -32,7 +32,7 @@ export default function PredictionPage() {
             response => response.json()
             .then((r) => { 
                 console.log(r)
-                setText(r.base_64)
+                setText(r.prediction)
                 setImage(r.base_64)
                 console.log("Exito!")
             })

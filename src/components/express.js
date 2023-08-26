@@ -9,7 +9,7 @@ const expressPort = 3000
 const wsPort = 3100
 const wss = new WebSocketServer({port: wsPort})
 
-let image = "Soy la Imagen"
+let response = {"base_64": "Soy la Imagen", "prediction": "Ninguna"}
 
 
 /* ------------------------------- METODOS DEL WEBSOCKET -------------------------------*/
@@ -28,21 +28,21 @@ app.listen(expressPort, ()=>{console.log("El puerto esta Funcionando")})
 
 app.post('/image', (req, res) => {
     let request = req.body
-    image = request.base_64
+    console.log(req.body)
+    response.base_64 = request.base_64
+    response.prediction = request.prediction
 
     wss.clients.forEach((client)=>{ client.send("Imagen Disponible")})
     res.send('Active la Disponibilidad de la Imagen')
 })
 
 app.get("/predict", (req, res)=>{
-    console.log(image)
-    res.json({"base_64": image})
+    res.json(response)
 })
 
 /* ------------------------------- ENDPOINTS DE PRUEBA -------------------------------*/
 app.get('/image', (req, res) => {
     wss.clients.forEach((client)=>{ client.send("Imagen Disponible")})
-    image = image + " I "
     res.send('Active la Disponibilidad de la Imagen')
 })
 
