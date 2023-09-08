@@ -6,8 +6,8 @@ import cors from "cors";
 const app = express()
 const expressPort = 3000
 
-const wsPort = 3100
-const wss = new WebSocketServer({port: wsPort})
+const wsPort = 8080
+const wss = new WebSocketServer({port: wsPort, 'Access-Control-Allow-Origin': "*"})
 
 let response = {"name": "Mi Nombre", "base_64": "Soy la Imagen", "label": "Ninguna", "prob": 0.0}
 
@@ -21,7 +21,7 @@ wss.on('connection', function connection(ws) {
 
 /* ------------------------------- ENDPOINTS DE EXPRESS -------------------------------*/
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'http://20.231.67.81' }));
 app.use(express.json())
 
 app.listen(expressPort, ()=>{console.log("El puerto esta Funcionando")})
