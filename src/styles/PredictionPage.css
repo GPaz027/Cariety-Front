@@ -1,0 +1,29 @@
+.text-container {
+    font-family: system-ui;
+    font-size: 4vh;
+    margin-bottom: 4vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container {
+    background-color: cornflowerblue;
+    border-radius: 10%;
+    height: 60vh;
+    width: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    max-width: 540px;
+    max-height: 540px;
+    height: 100%;
+    width: 100%;
+}
