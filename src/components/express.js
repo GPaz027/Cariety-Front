@@ -16,15 +16,15 @@ let response = {"name": "Mi Nombre", "base_64": "Soy la Imagen", "label": "Ningu
 wss.on('connection', function connection(ws) {
     console.log("Websocket del microbackend encendido")
 
-    ws.send("Hola desde el MicroBackend")
+    ws.send("MicroBackend encendido")
 });
 
 /* ------------------------------- ENDPOINTS DE EXPRESS -------------------------------*/
 
-app.use(cors({ origin: 'http://20.231.67.81' }));
+app.use(cors({ origin: 'http://20.231.67.81:5173' }));
 app.use(express.json())
 
-app.listen(expressPort, ()=>{console.log("El puerto esta Funcionando")})
+app.listen(expressPort, ()=>{console.log("Puerto funcionando")})
 
 app.post('/image', (req, res) => {
     let request = req.body
