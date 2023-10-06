@@ -16,7 +16,7 @@ let response = {"name": "Mi Nombre", "base_64": "Soy la Imagen", "label": "Ningu
 wss.on('connection', function connection(ws) {
     console.log("Websocket del microbackend encendido")
 
-    ws.send("MicroBackend encendido")
+    ws.send("N/A")
 });
 
 /* ------------------------------- ENDPOINTS DE EXPRESS -------------------------------*/
