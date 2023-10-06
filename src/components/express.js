@@ -21,7 +21,7 @@ wss.on('connection', function connection(ws) {
 
 /* ------------------------------- ENDPOINTS DE EXPRESS -------------------------------*/
 
-app.use(cors({ origin: 'http://20.231.67.81:5173' }));
+app.use(cors({ origin: 'http://20.231.67.81' }));
 app.use(express.json())
 
 app.listen(expressPort, ()=>{console.log("Puerto funcionando")})
