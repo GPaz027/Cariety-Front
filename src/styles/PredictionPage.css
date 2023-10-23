@@ -2,6 +2,7 @@
     font-family: system-ui;
     font-size: 4vh;
     margin-bottom: 4vh;
+    color: #240A0A;
 }
 
 .container {
@@ -12,19 +13,23 @@
 }
 
 .image-container {
-    border-radius: 10%;
-    height: 60vh;
-    width: 60vh;
+    border-radius: 5%;
+    height: 54vh;
+    width: 54vh;
+    min-width: 500px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #FADD9E;
 }
 
 .image {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 500px;
+    max-height: 500px;
     height: 100%;
     width: 100%;
+    border-radius: 5%;
 }
 
 .span-prob {
