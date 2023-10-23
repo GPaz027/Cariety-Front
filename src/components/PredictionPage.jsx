@@ -1,15 +1,16 @@
 import React from "react";
 import "../styles/PredictionPage.css";
 import { useEffect, useState } from "react";
+import Logo from "../assets/Logo_Cariety.png";
 
 export default function PredictionPage() {
   const url_socket = "ws://20.231.67.81:8080";
-  const URL_PREDICCION = "http://20.231.67.81:3000/predict";
+  const URL_PREDICCION = "http:///20.231.67.81:3000/predict";
 
   const webSocket = new WebSocket(url_socket);
   const [text, setText] = useState("Esperando al socket");
-  const [prob, setProb] = useState(0.5);
-  const [image, setImage] = useState("https://es.vitejs.dev/logo.svg");
+  const [prob, setProb] = useState(0);
+  const [image, setImage] = useState(Logo);
 
   useEffect(() => {
     webSocket.onopen = () => {
@@ -43,18 +44,18 @@ export default function PredictionPage() {
   return (
     <div className="container">
       <div className="text-container">
-        {"Prediccion: "}
-        <span className="prediction">
+        <span className="span-pred">
+          Predicción:{" "}
           {text != "good" && text != "bad"
             ? text
             : text == "good"
             ? "Buena"
-            : "Mala"}{" "}
+            : "Mala"}
         </span>
-
-        {}
         <div className="prob">
-          {"Probabilidad: " + (prob * 100).toFixed(0) + "%"}
+          <span className="span-prob">
+            Certeza: {(prob * 100).toFixed(0) + "%"}
+          </span>
         </div>
       </div>
       <div className="image-container">

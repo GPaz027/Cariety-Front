@@ -12,7 +12,6 @@
 }
 
 .image-container {
-    background-color: cornflowerblue;
     border-radius: 10%;
     height: 60vh;
     width: 60vh;
@@ -22,8 +21,13 @@
 }
 
 .image {
-    max-width: 540px;
-    max-height: 540px;
+    max-width: 250px;
+    max-height: 250px;
     height: 100%;
     width: 100%;
+}
+
+.span-prob {
+    display: flex;
+    justify-content: left;
 }
