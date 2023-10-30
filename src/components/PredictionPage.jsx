@@ -26,6 +26,10 @@ export default function PredictionPage() {
     };
   }, []);
 
+  const calculate_certanty =(prob)=>{
+    return Math.abs(prob-0.5) * 200
+  }
+
   const getResult = () => {
     console.log("buscando");
     fetch(URL_PREDICCION, {
@@ -54,7 +58,7 @@ export default function PredictionPage() {
         </span>
         <div className="prob">
           <span className="span-prob">
-            Certeza: {(prob * 100).toFixed(0) + "%"}
+            Certeza: {calculate_certanty(prob).toFixed(0) + "%"}
           </span>
         </div>
       </div>
