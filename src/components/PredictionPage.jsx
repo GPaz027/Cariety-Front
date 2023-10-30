@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Logo from "../assets/Logo_Cariety.png";
 
 export default function PredictionPage() {
-  const url_socket = "ws://20.231.67.81:8080";
-  const URL_PREDICCION = "http:///20.231.67.81:3000/predict";
+  const url_socket = "ws://localhost:3100/ws";
+  const URL_PREDICCION = "http://localhost:3000/predict";
 
   const webSocket = new WebSocket(url_socket);
   const [text, setText] = useState("Esperando al socket");
