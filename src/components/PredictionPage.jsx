@@ -2,10 +2,14 @@ import React from "react";
 import "../styles/PredictionPage.css";
 import { useEffect, useState } from "react";
 import Logo from "../assets/Logo_Cariety.png";
+import.meta.env;
+
+const serverIP = import.meta.env.VITE_REACT_APP_SERVER_IP;
+console.log(serverIP);
 
 export default function PredictionPage() {
-  const url_socket = "ws://20.231.67.81:8080";
-  const URL_PREDICCION = "http:///20.231.67.81:3000/predict";
+  const url_socket = `ws://${serverIP}:8080`;
+  const URL_PREDICCION = `http://${serverIP}:3000/predict`;
 
   const webSocket = new WebSocket(url_socket);
   const [text, setText] = useState("Esperando al socket");
